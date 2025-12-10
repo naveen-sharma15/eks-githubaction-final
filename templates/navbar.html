@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg glass-nav py-3">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold fs-4" href="/" 
+       style="background: linear-gradient(90deg,#007bff,#8a2be2); 
+       -webkit-background-clip: text; color: transparent;">
+      FlaskBlog
+    </a>
+
+    <!-- Mobile Button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-center">
+
+        <li class="nav-item"><a class="nav-link nav-link-custom" href="/">Home</a></li>
+
+        {% if session.get('user_id') %}
+        
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="/dashboard">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="/create">Write</a></li>
+
+          <!-- Profile dropdown -->
+          <li class="nav-item dropdown ms-2">
+            <a class="nav-link dropdown-toggle nav-profile" href="#" role="button" data-bs-toggle="dropdown">
+              <img src="{{ navbar_image }}"
+                   class="rounded-circle" width="35" height="35"
+                   style="object-fit: cover;">
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li><a class="dropdown-item" href="/dashboard">My Profile</a></li>
+              <li><a class="dropdown-item" href="/upload_profile">Change Picture</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
+            </ul>
+          </li>
+
+        {% else %}
+
+          <!-- Login -->
+          <li class="nav-item ms-3">
+            <a class="btn btn-outline-primary rounded-pill px-3" href="/login">Login</a>
+          </li>
+
+          <!-- Signup -->
+          <li class="nav-item ms-2">
+            <a class="btn btn-primary rounded-pill px-3" href="/signup">Get Started</a>
+          </li>
+
+        {% endif %}
+
+        <!-- Dark Mode Switch -->
+        <li class="nav-item ms-3">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="darkToggle">
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+

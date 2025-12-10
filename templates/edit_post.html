@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="form-box">
+    <h2 class="fw-bold mb-4">Edit Post</h2>
+
+    <form method="POST">
+        <input type="text" name="title" class="form-control mb-3" value="{{ post[1] }}" required>
+        <textarea name="content" rows="8" class="form-control mb-3" required>{{ post[2] }}</textarea>
+        <button class="btn btn-primary w-100">Save Changes</button>
+    </form>
+</div>
+
+{% endblock %}

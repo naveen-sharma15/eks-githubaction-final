@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+/* Page Wrapper */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    min-height: 80vh;
+}
+
+/* Glassmorphism Card */
+.login-card {
+    width: 420px;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(14px);
+    border-radius: 22px;
+    padding: 40px 38px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    animation: fadeIn .4s ease-in-out;
+}
+
+.dark .login-card {
+    background: rgba(22,27,34,0.75);
+    box-shadow: 0 0 0 1px #2c323a;
+}
+
+/* Title */
+.login-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Inputs */
+.login-input {
+    width: 100%;
+    padding: 14px 16px;
+    margin-top: 12px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    transition: .25s;
+}
+
+.login-input:focus {
+    border-color: #7f56d9;
+    box-shadow: 0 0 0 3px rgba(127,86,217,0.25);
+}
+
+.dark .login-input {
+    background: #0f1117;
+    border-color: #3b4148;
+    color: white;
+}
+
+/* Login Button */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg,#0099ff,#7f56d9);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.login-btn:hover {
+    transform: scale(1.03);
+    opacity: 0.95;
+}
+
+/* Extra links */
+.extra-links {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.extra-links a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #7f56d9;
+}
+
+.dark .extra-links a {
+    color: #58a6ff;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+
+<div class="login-page">
+    <div class="login-card">
+
+        <h2 class="login-title">Welcome Back 👋</h2>
+
+        <form action="" method="POST">
+
+            <!-- Email -->
+            <input type="email" 
+                   name="email" 
+                   class="login-input" 
+                   placeholder="Email"
+                   required>
+
+            <!-- Password -->
+            <input type="password" 
+                   name="password" 
+                   class="login-input" 
+                   placeholder="Password"
+                   required>
+
+            <!-- Login Button -->
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div class="extra-links">
+            <a href="/signup">Don't have an account? Create one →</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+

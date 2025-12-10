@@ -1,0 +1,51 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: final-app
+  namespace: final-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: final-app
+  template:
+    metadata:
+      labels:
+        app: final-app
+    spec:
+      # If you have this ServiceAccount created, keep it. Otherwise remove or create it (see below).
+      serviceAccountName: flask-sa
+      containers:
+        - name: final-app
+          image: 858039354643.dkr.ecr.us-east-1.amazonaws.com/final-flask-prod:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: final-config
+            - secretRef:
+                name: final-secret
+          # (Optional) Probes — only keep if your Flask app has /health route
+          # readinessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: 5000
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 10
+          # livenessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: 5000
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 20
+          # (Optional) Resource hints
+          # resources:
+          #   requests:
+          #     cpu: "100m"
+          #     memory: "128Mi"
+          #   limits:
+          #     cpu: "500m"
+          #     memory: "512Mi"
+

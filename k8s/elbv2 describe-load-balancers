@@ -1,0 +1,88 @@
+{
+    "repositories": [
+        {
+            "repositoryArn": "arn:aws:ecr:us-east-1:858039354643:repository/blogfi",
+            "registryId": "858039354643",
+            "repositoryName": "blogfi",
+            "repositoryUri": "858039354643.dkr.ecr.us-east-1.amazonaws.com/blogfi",
+            "createdAt": "2025-12-01T17:25:38.626000+00:00",
+            "imageTagMutability": "MUTABLE",
+            "imageScanningConfiguration": {
+                "scanOnPush": true
+            },
+            "encryptionConfiguration": {
+                "encryptionType": "AES256"
+            }
+        },
+        {
+            "repositoryArn": "arn:aws:ecr:us-east-1:858039354643:repository/blogfi2",
+            "registryId": "858039354643",
+            "repositoryName": "blogfi2",
+            "repositoryUri": "858039354643.dkr.ecr.us-east-1.amazonaws.com/blogfi2",
+            "createdAt": "2025-12-01T19:42:43.556000+00:00",
+            "imageTagMutability": "MUTABLE",
+            "imageScanningConfiguration": {
+                "scanOnPush": true
+            },
+            "encryptionConfiguration": {
+                "encryptionType": "AES256"
+            }
+        },
+        {
+            "repositoryArn": "arn:aws:ecr:us-east-1:858039354643:repository/blog-flask",
+            "registryId": "858039354643",
+            "repositoryName": "blog-flask",
+            "repositoryUri": "858039354643.dkr.ecr.us-east-1.amazonaws.com/blog-flask",
+            "createdAt": "2025-12-01T09:55:41.789000+00:00",
+            "imageTagMutability": "MUTABLE",
+            "imageScanningConfiguration": {
+                "scanOnPush": false
+            },
+            "encryptionConfiguration": {
+                "encryptionType": "AES256"
+            }
+        },
+        {
+            "repositoryArn": "arn:aws:ecr:us-east-1:858039354643:repository/blog-nginx",
+            "registryId": "858039354643",
+            "repositoryName": "blog-nginx",
+            "repositoryUri": "858039354643.dkr.ecr.us-east-1.amazonaws.com/blog-nginx",
+            "createdAt": "2025-12-01T09:55:42.567000+00:00",
+            "imageTagMutability": "MUTABLE",
+            "imageScanningConfiguration": {
+                "scanOnPush": false
+            },
+            "encryptionConfiguration": {
+                "encryptionType": "AES256"
+            }
+        },
+        {
+            "repositoryArn": "arn:aws:ecr:us-east-1:858039354643:repository/blog-sql",
+            "registryId": "858039354643",
+            "repositoryName": "blog-sql",
+            "repositoryUri": "858039354643.dkr.ecr.us-east-1.amazonaws.com/blog-sql",
+            "createdAt": "2025-12-01T09:55:43.349000+00:00",
+            "imageTagMutability": "MUTABLE",
+            "imageScanningConfiguration": {
+                "scanOnPush": false
+            },
+            "encryptionConfiguration": {
+                "encryptionType": "AES256"
+            }
+        },
+        {
+            "repositoryArn": "arn:aws:ecr:us-east-1:858039354643:repository/final_app",
+            "registryId": "858039354643",
+            "repositoryName": "final_app",
+            "repositoryUri": "858039354643.dkr.ecr.us-east-1.amazonaws.com/final_app",
+            "createdAt": "2025-12-08T18:52:53.200000+00:00",
+            "imageTagMutability": "MUTABLE",
+            "imageScanningConfiguration": {
+                "scanOnPush": false
+            },
+            "encryptionConfiguration": {
+                "encryptionType": "AES256"
+            }
+        }
+    ]
+}

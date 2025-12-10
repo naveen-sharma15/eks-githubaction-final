@@ -1,0 +1,6 @@
+Flask
+Flask-MySQLdb
+Flask-Bcrypt
+Flask-Session
+gunicorn
+boto3

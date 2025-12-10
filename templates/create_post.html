@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+/* Container */
+.create-post-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+/* Post Card */
+.create-post-box {
+    width: 650px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    animation: fadeIn .5s ease-in-out;
+}
+
+.dark .create-post-box {
+    background: #161b22;
+    color: white;
+    box-shadow: 0 0 0 1px #30363d;
+}
+
+/* Floating title */
+.create-title {
+    font-weight: 800;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+.input-field, textarea, select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    margin-bottom: 18px;
+    font-size: 15px;
+}
+
+.dark .input-field, .dark textarea, .dark select {
+    background: #0f1117;
+    border-color: #3b4148;
+    color: white;
+}
+
+/* Word counter */
+.word-counter {
+    text-align: right;
+    font-size: 13px;
+    color: #777;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.dark .word-counter {
+    color: #aaa;
+}
+
+/* Gradient Button */
+.publish-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg,#0099ff,#7f56d9);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: .25s;
+}
+
+.publish-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<div class="create-post-wrapper">
+    <div class="create-post-box">
+        <h2 class="create-title">✍️ Write a New Post</h2>
+
+        <form action="" method="POST">
+
+            <!-- TITLE -->
+            <input 
+                type="text" 
+                class="input-field"
+                placeholder="Post Title"
+                name="title"
+                required
+            >
+
+            <!-- CATEGORY -->
+            <select name="category" class="input-field">
+                <option value="" disabled selected>Select Category</option>
+                <option>Technology</option>
+                <option>Cloud & DevOps</option>
+                <option>AI / ML</option>
+                <option>Programming</option>
+                <option>Tutorial</option>
+            </select>
+
+            <!-- CONTENT -->
+            <textarea 
+                name="content" 
+                rows="7" 
+                id="postContent"
+                placeholder="Write your amazing content..."
+                required></textarea>
+
+            <div class="word-counter" id="wordCounter">0 words</div>
+
+            <!-- PUBLISH -->
+            <button class="publish-btn" type="submit">Publish</button>
+
+        </form>
+    </div>
+</div>
+
+<script>
+// Auto Word Counter
+const textarea = document.getElementById("postContent");
+const counter = document.getElementById("wordCounter");
+
+textarea.addEventListener("input", () => {
+    const words = textarea.value.trim().split(/\s+/).filter(word => word.length > 0);
+    counter.innerText = `${words.length} words`;
+
+    // Auto expand
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
+});
+</script>
+
+{% endblock %}
+

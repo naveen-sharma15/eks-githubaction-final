@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+
+    <!-- Search Header -->
+    <h2 class="fw-bold mb-4">Search Results for: "<span class="text-primary">{{ query }}</span>"</h2>
+
+    {% if results %}
+        <div class="row g-4">
+
+            {% for post in results %}
+            <div class="col-lg-6 col-md-12">
+                <div class="p-4 rounded-4 shadow-sm bg-white search-card">
+
+                    <!-- Title -->
+                    <h4 class="fw-bold">{{ post[1] }}</h4>
+
+                    <!-- Short description -->
+                    <p class="text-muted mt-2">
+                        {{ post[2][:160] }}...
+                    </p>
+
+                    <!-- Author -->
+                    <p class="small text-dark">
+                        <strong>By {{ post[3] }}</strong>
+                    </p>
+
+                    <!-- Button -->
+                    <a href="/post/{{ post[0] }}" class="btn btn-primary mt-3 w-100 rounded-pill">
+                        Read More →
+                    </a>
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    {% else %}
+
+        <div class="text-center mt-5">
+            <h4 class="fw-bold text-muted">No results found 🙁</h4>
+            <p class="text-muted">Try searching something else.</p>
+        </div>
+
+    {% endif %}
+
+</div>
+
+<!-- Extra Styling -->
+<style>
+.search-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.search-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+</style>
+
+{% endblock %}
+

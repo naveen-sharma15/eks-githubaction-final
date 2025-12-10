@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: final-config
+  namespace: final-app
+data:
+  MYSQL_HOST: "mysql"
+  MYSQL_USER: "root"
+  MYSQL_DB: "blogdb"
+
+  AWS_REGION: "us-east-1"
+  SNS_TOPIC_ARN: "arn:aws:sns:us-east-1:858039354643:blog-user-alerts"
+  S3_BUCKET: "final-app-profile-images"
