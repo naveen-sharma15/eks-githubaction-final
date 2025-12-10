@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::858039354643:role/eksctl-final-prod-cluster-nodegrou-NodeInstanceRole-vE1TizrwRsOM
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes
+    - rolearn: arn:aws:iam::858039354643:role/github-action-role
+      username: github
+      groups:
+        - system:masters
+  mapUsers: |
+    - userarn: arn:aws:iam::858039354643:user/jenkins-eks-user
+      username: jenkins
+      groups:
+        - system:masters

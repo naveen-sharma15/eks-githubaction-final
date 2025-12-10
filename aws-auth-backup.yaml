@@ -1,0 +1,25 @@
+apiVersion: v1
+data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::858039354643:role/eksctl-final-prod-cluster-nodegrou-NodeInstanceRole-vE1TizrwRsOM
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes
+
+    - rolearn: arn:aws:iam::858039354643:role/jenkins-eks-role
+      username: jenkins
+      groups:
+        - system:masters
+  mapUsers: |
+    []
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"mapRoles":"- rolearn: arn:aws:iam::858039354643:role/eksctl-final-prod-cluster-nodegrou-NodeInstanceRole-vE1TizrwRsOM\n  username: system:node:{{EC2PrivateDNSName}}\n  groups:\n    - system:bootstrappers\n    - system:nodes\n\n- rolearn: arn:aws:iam::858039354643:role/jenkins-eks-role\n  username: jenkins\n  groups:\n    - system:masters\n","mapUsers":"[]\n"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"aws-auth","namespace":"kube-system"}}
+  creationTimestamp: "2025-12-10T09:17:25Z"
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "62486"
+  uid: be68a440-57ec-4907-9b20-05b6f4c5495c
