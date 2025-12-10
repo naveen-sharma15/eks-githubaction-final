@@ -5,51 +5,50 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+  contents: read
+
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: final-flask-prod
   CLUSTER_NAME: final-prod-cluster
+  ECR_REPO: 858039354643.dkr.ecr.us-east-1.amazonaws.com/final-flask-prod
   DEPLOYMENT_NAME: final-app
-  CONTAINER_NAME: final-app
+  NAMESPACE: final-app
 
 jobs:
-  build-and-deploy:
-    name: Build, Push & Deploy
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
+    - name: Checkout code
       uses: actions/checkout@v3
 
+    # Authenticate to AWS using OIDC + your IAM role
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v2
+      uses: aws-actions/configure-aws-credentials@v4
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        role-to-assume: arn:aws:iam::858039354643:role/github-action-role
         aws-region: ${{ env.AWS_REGION }}
 
     - name: Login to Amazon ECR
-      id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build & Push Docker Image
       run: |
         IMAGE_TAG=v${{ github.run_number }}
+        docker build -t $ECR_REPO:$IMAGE_TAG .
+        docker push $ECR_REPO:$IMAGE_TAG
         echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
-        
-        docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
-        docker tag $ECR_REPOSITORY:$IMAGE_TAG \
-          ${{ steps.login-ecr.outputs.registry }}/${ECR_REPOSITORY}:$IMAGE_TAG
 
-        docker push \
-          ${{ steps.login-ecr.outputs.registry }}/${ECR_REPOSITORY}:$IMAGE_TAG
-
-    - name: Update kubeconfig
+    - name: Update kubeconfig for EKS
       run: |
-        aws eks update-kubeconfig --region $AWS_REGION --name $CLUSTER_NAME
+        aws eks update-kubeconfig \
+          --region $AWS_REGION \
+          --name $CLUSTER_NAME
 
     - name: Deploy to EKS
       run: |
         kubectl set image deployment/$DEPLOYMENT_NAME \
-          $CONTAINER_NAME=${{ steps.login-ecr.outputs.registry }}/${ECR_REPOSITORY}:${IMAGE_TAG} \
-          -n final-app
+          $DEPLOYMENT_NAME=$ECR_REPO:${{ env.IMAGE_TAG }} \
+          -n $NAMESPACE
